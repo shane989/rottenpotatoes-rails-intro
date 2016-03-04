@@ -17,16 +17,19 @@ class MoviesController < ApplicationController
     #@movies = Movie.where(:rating => @filtered_ratings)
     #@all_ratings = Movie.all_ratings
     #@movies = Movie.scoped
+    
     session_params = session.to_hash.slice('sort', 'ratings')
+    
     if params.slice(:sort,:ratings).empty? && session_params.any?
+      
       flash.keep
       redirect_to movies_path(session_params)
     end
     
-    session[:sort] = params[:sort] if params[:sort].present?
-    session[:ratings] = params[:ratings] if params[:ratings].present?
+    session[:sort] = params[:sort] if params[:sort].present? #if sort clicked, save session
+    session[:ratings] = params[:ratings] if params[:ratings].present? #if ratings changed, save session
     
-    @sort_field = session[:sort]
+    @sort_field = session[:sort] # maps current sort and rating to variables to sort and filter
     @ratings = session[:ratings] || Movie::RATINGS
     
     @all_ratings = Movie::RATINGS
