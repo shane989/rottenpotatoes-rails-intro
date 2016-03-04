@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
-
+   respond_to :html, :json
+   
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date)
   end
