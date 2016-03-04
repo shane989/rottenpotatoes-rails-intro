@@ -47,6 +47,8 @@ group :development, :test do
   
   gem 'protected_attributes'
 
+  gem "responders"
+
   gem 'rspec-rails'
   gem 'autotest'
 end
