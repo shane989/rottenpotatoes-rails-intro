@@ -1,6 +1,6 @@
 require "application_responder"
 
-class ApplicationResponder < ActionController::Responder
+class ApplicationResponder < ActionController::Base
   include Responders::FlashResponder
   include Responders::HttpCacheResponder
 
